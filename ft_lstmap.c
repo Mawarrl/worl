@@ -23,18 +23,14 @@ t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 	if (!(copy = ft_lstnew(lst->content, lst->content_size)))
 		return (0);
 	copy = (*f)(copy);
-	lst = lst->next;
-	copy = copy->next;
 	tmp = copy;
+	lst = lst->next;
 	while (lst != NULL)
 	{
-		if (lst == NULL || lst->content == NULL)
-			return (NULL);
-		if (!(copy = ft_lstnew(lst->content, lst->content_size)))
+		if (!(copy->next = (*f)(ft_lstnew(lst->content, lst->content_size))))
 			return (0);
-		copy = (*f)(copy);
-		lst = lst->next;
 		copy = copy->next;
+		lst = lst->next;
 	}
 	return (tmp);
 }

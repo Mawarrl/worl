@@ -46,7 +46,7 @@ char	*ft_strtrim(char const *s)
 		j++;
 	len = ft_strlen(s);
 	if (len == j || *s == '\0')
-		return ("");
+		return (ft_strnew(0));
 	i = ft_count(s);
 	return (ft_strsub(s, j, (len - (i + j) + 1)));
 }
